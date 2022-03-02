@@ -72,8 +72,10 @@ export class fhcDataattributeservicecontrollerApi {
       (from ? "&from=" + from : "") +
       (to ? "&to=" + to : "") +
       (cause ? "&cause=" + cause : "") +
-      (prolongation ? "&prolongation=" + prolongation : "") +
-      (total ? "&total=" + total : "")
+      "&prolongation=" +
+      prolongation +
+      "&total=" +
+      total
     let headers = this.headers
     headers = headers
       .filter(h => h.header !== "Content-Type")
