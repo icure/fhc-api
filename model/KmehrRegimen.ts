@@ -9,20 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { AdministrationunitType } from "./AdministrationunitType"
-import { Takes } from "./Takes"
-import { TextType } from "./TextType"
+import { JAXBElementobject } from "./JAXBElementobject"
 
 import { decodeBase64 } from "./ModelHelper"
 
-export class Posology {
+export class KmehrRegimen {
   constructor(json: JSON | any) {
-    Object.assign(this as Posology, json)
+    Object.assign(this as KmehrRegimen, json)
   }
 
-  high?: number
-  low?: number
-  takes?: Takes
-  text?: TextType
-  unit?: AdministrationunitType
+  daynumbersAndQuantitiesAndDates?: Array<JAXBElementobject>
 }

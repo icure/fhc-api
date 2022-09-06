@@ -9,20 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { AdministrationunitType } from "./AdministrationunitType"
-import { Takes } from "./Takes"
-import { TextType } from "./TextType"
 
 import { decodeBase64 } from "./ModelHelper"
 
-export class Posology {
+export class ActivePattern {
   constructor(json: JSON | any) {
-    Object.assign(this as Posology, json)
+    Object.assign(this as ActivePattern, json)
   }
 
-  high?: number
-  low?: number
-  takes?: Takes
-  text?: TextType
-  unit?: AdministrationunitType
+  document?: string
+  id?: string
+  name?: string
+  role?: string
 }
