@@ -30,5 +30,5 @@ export class DaasResponse {
   }
   context?: { [key: string]: string }
 
-  destinations?: Array<models.Mapstringstring>
+  destinations?: Array<{ [key: string]: string }>
 }
