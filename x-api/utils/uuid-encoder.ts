@@ -1,5 +1,3 @@
-import * as bigInt from "big-integer"
-
 const knownBases: { [key: string]: string } = {
   base64: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/",
   base62: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
@@ -65,63 +63,5 @@ export class UuidEncoder {
     return Object.prototype.hasOwnProperty.call(caseSensitiveBases, baseEncodingStr)
       ? caseSensitiveBases[baseEncodingStr]
       : true
-  }
-
-  /**
-   * Encode a UUID
-   * @param {string} uuid Properly formatted UUID
-   * @returns {string} Encoded UUID
-   * @public
-   */
-  encode(uuid: string) {
-    const cleanUuid = uuid.replace(/-/g, "")
-    const { base, encStr } = this
-
-    let iUuid = bigInt(cleanUuid, 16)
-    let str = ""
-
-    do {
-      str = encStr.substr(iUuid.mod(base).valueOf(), 1) + str
-      iUuid = iUuid.divide(base)
-    } while (iUuid.greater(0))
-
-    return str
-  }
-
-  /**
-   * Decode an encoded UUID
-   * @public
-   * @param {string} str Previously encoded string
-   * @returns {string} Properly formatted UUID
-   * @throws Throws an {Error} when encountering invalid data
-   */
-  decode(str: string) {
-    let iUuid = bigInt(0)
-
-    const { base, encStr } = this
-    const len = str.length
-    const finalStr = this.isCaseSensitive ? str : str.toLowerCase()
-
-    for (let pos = 0; pos < len; pos += 1) {
-      const ch = finalStr.substr(pos, 1)
-      const encPos = encStr.indexOf(ch)
-
-      if (encPos < 0) {
-        throw new Error("Invalid encoded data")
-      }
-
-      iUuid = iUuid.add(encPos)
-
-      if (pos < len - 1) {
-        iUuid = iUuid.multiply(base)
-      }
-    }
-
-    const uuid = iUuid.toString(16).padStart(32, "0")
-
-    return `${uuid.substr(0, 8)}-${uuid.substr(8, 4)}-${uuid.substr(12, 4)}-${uuid.substr(
-      16,
-      4
-    )}-${uuid.substr(20)}`
   }
 }
