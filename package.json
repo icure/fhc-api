@@ -1,6 +1,6 @@
 {
   "name": "@icure/be-fhc-lite-api",
-  "version": "0.6.4",
+  "version": "0.6.6",
   "description": "Typescript version of Freehealth Connector standalone API client",
   "types": "dist/index.d.ts",
   "devDependencies": {
