@@ -1,6 +1,6 @@
 {
   "name": "@icure/be-fhc-lite-api",
-  "version": "0.6.6",
+  "version": "0.6.16",
   "description": "Typescript version of Freehealth Connector standalone API client",
   "types": "dist/index.d.ts",
   "devDependencies": {
@@ -29,7 +29,7 @@
     "install": "tsc",
     "prepublish": "rm -rf dist && tsc",
     "prepare": "rimraf dist && npm run build && jq '{name:.name, version:.version, description:.description, main:\"index.js\", types:\"index.d.ts\", dependencies:.dependencies, peerDependencies:.peerDependencies, author:.author, license:.license, bugs:.bugs, homepage:.homepage}' < package.json > dist/package.json",
-    "publish": "yarn version patch && yarn run prepare && cd dist && npm publish --access=public && cd ..",
+    "publish": "yarn run prepare && cd dist && npm publish --access=public && cd ..",
     "precommit": "pretty-quick --staged"
   },
   "repository": {
