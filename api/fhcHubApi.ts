@@ -671,7 +671,7 @@ export class fhcHubApi {
     breakTheGlassReason?: string,
     externalHubId?: string,
     externalHubName?: string
-  ): Promise<Kmehrmessage> {
+  ): Promise<ArrayBuffer> {
     let _body = null
 
     const _url =
@@ -698,8 +698,8 @@ export class fhcHubApi {
     xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
     xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
     xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
-    return XHR.sendCommand("GET", _url, headers, _body, this.fetchImpl)
-      .then(doc => new Kmehrmessage(doc.body as JSON))
+    return XHR.sendCommand("GET", _url, headers, _body, this.fetchImpl, "application/octet-stream")
+      .then(doc => doc.body as ArrayBuffer)
       .catch(err => this.handleError(err))
   }
 
