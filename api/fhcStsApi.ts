@@ -78,12 +78,14 @@ export class fhcStsApi {
    * @param xFHCPassPhrase X-FHC-passPhrase
    * @param ssin ssin
    * @param xFHCKeystoreId X-FHC-keystoreId
+   * @param destination destination
    */
   getBearerTokenUsingGET(
     xFHCTokenId: string,
     xFHCPassPhrase: string,
     ssin: string,
-    xFHCKeystoreId: string
+    xFHCKeystoreId: string,
+    destination?: string
   ): Promise<BearerToken> {
     let _body = null
 
@@ -92,7 +94,8 @@ export class fhcStsApi {
       `/sts/token/bearer` +
       "?ts=" +
       new Date().getTime() +
-      (ssin ? "&ssin=" + encodeURIComponent(String(ssin)) : "")
+      (ssin ? "&ssin=" + encodeURIComponent(String(ssin)) : "") +
+      (destination ? "&destination=" + encodeURIComponent(String(destination)) : "")
     let headers = this.headers
     xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
     xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
