@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { XHR } from "./XHR"
+import { EAgreementList } from "../model/EAgreementList"
 import { EAgreementResponse } from "../model/EAgreementResponse"
 
 export class fhcEagreementApi {
@@ -486,6 +487,55 @@ export class fhcEagreementApi {
 
   /**
    *
+   * @summary confirmMessage
+   * @param body eagreementMessagesReference
+   * @param xFHCKeystoreId X-FHC-keystoreId
+   * @param xFHCTokenId X-FHC-tokenId
+   * @param xFHCPassPhrase X-FHC-passPhrase
+   * @param hcpNihii hcpNihii
+   * @param hcpSsin hcpSsin
+   * @param hcpFirstName hcpFirstName
+   * @param hcpLastName hcpLastName
+   * @param hcpSpeciality hcpSpeciality
+   */
+  confirmMessageUsingPOST(
+    xFHCKeystoreId: string,
+    xFHCTokenId: string,
+    xFHCPassPhrase: string,
+    hcpNihii: string,
+    hcpSsin: string,
+    hcpFirstName: string,
+    hcpLastName: string,
+    hcpSpeciality: string,
+    body?: Array<string>
+  ): Promise<boolean> {
+    let _body = null
+    _body = body
+
+    const _url =
+      this.host +
+      `/eagreement/async/confirmMessage` +
+      "?ts=" +
+      new Date().getTime() +
+      (hcpNihii ? "&hcpNihii=" + encodeURIComponent(String(hcpNihii)) : "") +
+      (hcpSsin ? "&hcpSsin=" + encodeURIComponent(String(hcpSsin)) : "") +
+      (hcpFirstName ? "&hcpFirstName=" + encodeURIComponent(String(hcpFirstName)) : "") +
+      (hcpLastName ? "&hcpLastName=" + encodeURIComponent(String(hcpLastName)) : "") +
+      (hcpSpeciality ? "&hcpSpeciality=" + encodeURIComponent(String(hcpSpeciality)) : "")
+    let headers = this.headers
+    headers = headers
+      .filter(h => h.header !== "Content-Type")
+      .concat(new XHR.Header("Content-Type", "application/json"))
+    xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
+    xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
+    xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
+    return XHR.sendCommand("POST", _url, headers, _body, this.fetchImpl)
+      .then(doc => JSON.parse(JSON.stringify(doc.body)))
+      .catch(err => this.handleError(err))
+  }
+
+  /**
+   *
    * @summary consultList
    * @param xFHCKeystoreId X-FHC-keystoreId
    * @param xFHCTokenId X-FHC-tokenId
@@ -709,6 +759,49 @@ export class fhcEagreementApi {
     xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
     return XHR.sendCommand("POST", _url, headers, _body, this.fetchImpl)
       .then(doc => new EAgreementResponse(doc.body as JSON))
+      .catch(err => this.handleError(err))
+  }
+
+  /**
+   *
+   * @summary getMessageList
+   * @param xFHCKeystoreId X-FHC-keystoreId
+   * @param xFHCTokenId X-FHC-tokenId
+   * @param xFHCPassPhrase X-FHC-passPhrase
+   * @param hcpNihii hcpNihii
+   * @param hcpSsin hcpSsin
+   * @param hcpFirstName hcpFirstName
+   * @param hcpLastName hcpLastName
+   * @param hcpSpeciality hcpSpeciality
+   */
+  getMessageListUsingPOST(
+    xFHCKeystoreId: string,
+    xFHCTokenId: string,
+    xFHCPassPhrase: string,
+    hcpNihii: string,
+    hcpSsin: string,
+    hcpFirstName: string,
+    hcpLastName: string,
+    hcpSpeciality: string
+  ): Promise<EAgreementList> {
+    let _body = null
+
+    const _url =
+      this.host +
+      `/eagreement/async/getMessages` +
+      "?ts=" +
+      new Date().getTime() +
+      (hcpNihii ? "&hcpNihii=" + encodeURIComponent(String(hcpNihii)) : "") +
+      (hcpSsin ? "&hcpSsin=" + encodeURIComponent(String(hcpSsin)) : "") +
+      (hcpFirstName ? "&hcpFirstName=" + encodeURIComponent(String(hcpFirstName)) : "") +
+      (hcpLastName ? "&hcpLastName=" + encodeURIComponent(String(hcpLastName)) : "") +
+      (hcpSpeciality ? "&hcpSpeciality=" + encodeURIComponent(String(hcpSpeciality)) : "")
+    let headers = this.headers
+    xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
+    xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
+    xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
+    return XHR.sendCommand("POST", _url, headers, _body, this.fetchImpl)
+      .then(doc => new EAgreementList(doc.body as JSON))
       .catch(err => this.handleError(err))
   }
 }
