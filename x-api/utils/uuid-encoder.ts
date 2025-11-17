@@ -81,7 +81,8 @@ export class UuidEncoder {
     let str = ""
 
     do {
-      str = encStr.substr(iUuid.mod(base).valueOf(), 1) + str
+      let start = iUuid.mod(base).valueOf()
+      str = encStr.substring(start, start + 1) + str
       iUuid = iUuid.divide(base)
     } while (iUuid.greater(0))
 
@@ -103,7 +104,7 @@ export class UuidEncoder {
     const finalStr = this.isCaseSensitive ? str : str.toLowerCase()
 
     for (let pos = 0; pos < len; pos += 1) {
-      const ch = finalStr.substr(pos, 1)
+      const ch = finalStr.substring(pos, pos + 1)
       const encPos = encStr.indexOf(ch)
 
       if (encPos < 0) {
@@ -119,9 +120,9 @@ export class UuidEncoder {
 
     const uuid = iUuid.toString(16).padStart(32, "0")
 
-    return `${uuid.substr(0, 8)}-${uuid.substr(8, 4)}-${uuid.substr(12, 4)}-${uuid.substr(
-      16,
-      4
-    )}-${uuid.substr(20)}`
+    return `${uuid.substring(0, 8)}-${uuid.substring(8, 12)}-${uuid.substring(
+      12,
+      16
+    )}-${uuid.substring(16, 20)}-${uuid.substring(20)}`
   }
 }
