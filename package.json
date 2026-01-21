@@ -1,6 +1,6 @@
 {
   "name": "@icure/be-fhc-api",
-  "version": "0.6.19",
+  "version": "0.6.20",
   "description": "Typescript version of Freehealth Connector standalone API client",
   "types": "dist/index.d.ts",
   "dependencies": {
@@ -29,8 +29,8 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "gen": "java -classpath swagger-codegen-generators.jar io.swagger.codegen.v3.cli.SwaggerCodegen generate -i https://fhcacc.icure.cloud/v2/api-docs -l typescript --additional-properties classPrefix=fhc -o ./",
-    "genloc": "java -classpath swagger-codegen-generators.jar io.swagger.codegen.v3.cli.SwaggerCodegen generate -i http://127.0.0.1:8091/v2/api-docs -l typescript --additional-properties classPrefix=fhc -o ./",
+    "gen": "java --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -classpath swagger-codegen-generators.jar io.swagger.codegen.v3.cli.SwaggerCodegen generate -i https://fhcacc.icure.cloud/v2/api-docs -l typescript --additional-properties classPrefix=fhc -o ./",
+    "genloc": "java --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED -classpath swagger-codegen-generators.jar io.swagger.codegen.v3.cli.SwaggerCodegen generate -i http://127.0.0.1:8091/v2/api-docs -l typescript --additional-properties classPrefix=fhc -o ./",
     "test": "mocha --require ts-node/register --watch-extensions ts 'test/**/*.ts'",
     "build": "tsc",
     "install": "tsc",

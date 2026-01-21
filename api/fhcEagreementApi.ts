@@ -39,6 +39,7 @@ export class fhcEagreementApi {
   /**
    *
    * @summary argueAgreement
+   * @param body attachments
    * @param xFHCKeystoreId X-FHC-keystoreId
    * @param xFHCTokenId X-FHC-tokenId
    * @param xFHCPassPhrase X-FHC-passPhrase
@@ -55,6 +56,7 @@ export class fhcEagreementApi {
    * @param patientLastName patientLastName
    * @param patientGender patientGender
    * @param insuranceRef insuranceRef
+   * @param prescriptionDate prescriptionDate
    * @param sctCode sctCode
    * @param sctDisplay sctDisplay
    * @param patientSsin patientSsin
@@ -84,6 +86,7 @@ export class fhcEagreementApi {
     patientLastName: string,
     patientGender: string,
     insuranceRef: string,
+    prescriptionDate: number,
     sctCode?: string,
     sctDisplay?: string,
     patientSsin?: string,
@@ -122,6 +125,9 @@ export class fhcEagreementApi {
       (patientLastName ? "&patientLastName=" + encodeURIComponent(String(patientLastName)) : "") +
       (patientGender ? "&patientGender=" + encodeURIComponent(String(patientGender)) : "") +
       (insuranceRef ? "&insuranceRef=" + encodeURIComponent(String(insuranceRef)) : "") +
+      (prescriptionDate
+        ? "&prescriptionDate=" + encodeURIComponent(String(prescriptionDate))
+        : "") +
       (sctCode ? "&sctCode=" + encodeURIComponent(String(sctCode)) : "") +
       (sctDisplay ? "&sctDisplay=" + encodeURIComponent(String(sctDisplay)) : "") +
       (patientSsin ? "&patientSsin=" + encodeURIComponent(String(patientSsin)) : "") +
@@ -174,6 +180,7 @@ export class fhcEagreementApi {
    * @param pathologyStartDate pathologyStartDate
    * @param pathologyCode pathologyCode
    * @param sctCode sctCode
+   * @param prescriptionDate prescriptionDate
    * @param sctDisplay sctDisplay
    * @param patientSsin patientSsin
    * @param patientIo patientIo
@@ -205,6 +212,7 @@ export class fhcEagreementApi {
     pathologyStartDate: number,
     pathologyCode: string,
     sctCode: string,
+    prescriptionDate: number,
     sctDisplay?: string,
     patientSsin?: string,
     patientIo?: string,
@@ -247,6 +255,9 @@ export class fhcEagreementApi {
         : "") +
       (pathologyCode ? "&pathologyCode=" + encodeURIComponent(String(pathologyCode)) : "") +
       (sctCode ? "&sctCode=" + encodeURIComponent(String(sctCode)) : "") +
+      (prescriptionDate
+        ? "&prescriptionDate=" + encodeURIComponent(String(prescriptionDate))
+        : "") +
       (sctDisplay ? "&sctDisplay=" + encodeURIComponent(String(sctDisplay)) : "") +
       (patientSsin ? "&patientSsin=" + encodeURIComponent(String(patientSsin)) : "") +
       (patientIo ? "&patientIo=" + encodeURIComponent(String(patientIo)) : "") +
@@ -300,6 +311,7 @@ export class fhcEagreementApi {
    * @param patientLastName patientLastName
    * @param patientGender patientGender
    * @param insuranceRef insuranceRef
+   * @param prescriptionDate prescriptionDate
    * @param patientSsin patientSsin
    * @param patientIo patientIo
    * @param patientIoMembership patientIoMembership
@@ -321,6 +333,7 @@ export class fhcEagreementApi {
     patientLastName: string,
     patientGender: string,
     insuranceRef: string,
+    prescriptionDate: number,
     patientSsin?: string,
     patientIo?: string,
     patientIoMembership?: string,
@@ -347,6 +360,9 @@ export class fhcEagreementApi {
       (patientLastName ? "&patientLastName=" + encodeURIComponent(String(patientLastName)) : "") +
       (patientGender ? "&patientGender=" + encodeURIComponent(String(patientGender)) : "") +
       (insuranceRef ? "&insuranceRef=" + encodeURIComponent(String(insuranceRef)) : "") +
+      (prescriptionDate
+        ? "&prescriptionDate=" + encodeURIComponent(String(prescriptionDate))
+        : "") +
       (patientSsin ? "&patientSsin=" + encodeURIComponent(String(patientSsin)) : "") +
       (patientIo ? "&patientIo=" + encodeURIComponent(String(patientIo)) : "") +
       (patientIoMembership
@@ -385,6 +401,7 @@ export class fhcEagreementApi {
    * @param patientLastName patientLastName
    * @param patientGender patientGender
    * @param insuranceRef insuranceRef
+   * @param prescriptionDate prescriptionDate
    * @param sctCode sctCode
    * @param sctDisplay sctDisplay
    * @param patientSsin patientSsin
@@ -414,6 +431,7 @@ export class fhcEagreementApi {
     patientLastName: string,
     patientGender: string,
     insuranceRef: string,
+    prescriptionDate: number,
     sctCode?: string,
     sctDisplay?: string,
     patientSsin?: string,
@@ -453,6 +471,9 @@ export class fhcEagreementApi {
       (patientLastName ? "&patientLastName=" + encodeURIComponent(String(patientLastName)) : "") +
       (patientGender ? "&patientGender=" + encodeURIComponent(String(patientGender)) : "") +
       (insuranceRef ? "&insuranceRef=" + encodeURIComponent(String(insuranceRef)) : "") +
+      (prescriptionDate
+        ? "&prescriptionDate=" + encodeURIComponent(String(prescriptionDate))
+        : "") +
       (sctCode ? "&sctCode=" + encodeURIComponent(String(sctCode)) : "") +
       (sctDisplay ? "&sctDisplay=" + encodeURIComponent(String(sctDisplay)) : "") +
       (patientSsin ? "&patientSsin=" + encodeURIComponent(String(patientSsin)) : "") +
@@ -649,6 +670,7 @@ export class fhcEagreementApi {
    * @param pathologyStartDate pathologyStartDate
    * @param pathologyCode pathologyCode
    * @param insuranceRef insuranceRef
+   * @param prescriptionDate prescriptionDate
    * @param sctCode sctCode
    * @param sctDisplay sctDisplay
    * @param patientSsin patientSsin
@@ -681,6 +703,7 @@ export class fhcEagreementApi {
     pathologyStartDate: number,
     pathologyCode: string,
     insuranceRef: string,
+    prescriptionDate: number,
     sctCode?: string,
     sctDisplay?: string,
     patientSsin?: string,
@@ -724,6 +747,9 @@ export class fhcEagreementApi {
         : "") +
       (pathologyCode ? "&pathologyCode=" + encodeURIComponent(String(pathologyCode)) : "") +
       (insuranceRef ? "&insuranceRef=" + encodeURIComponent(String(insuranceRef)) : "") +
+      (prescriptionDate
+        ? "&prescriptionDate=" + encodeURIComponent(String(prescriptionDate))
+        : "") +
       (sctCode ? "&sctCode=" + encodeURIComponent(String(sctCode)) : "") +
       (sctDisplay ? "&sctDisplay=" + encodeURIComponent(String(sctDisplay)) : "") +
       (patientSsin ? "&patientSsin=" + encodeURIComponent(String(patientSsin)) : "") +
