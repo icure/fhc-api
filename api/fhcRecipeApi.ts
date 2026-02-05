@@ -17,6 +17,7 @@ import { ListStructuredPrescriptionsResult } from "../model/ListStructuredPrescr
 import { Prescription } from "../model/Prescription"
 import { PrescriptionFullWithFeedback } from "../model/PrescriptionFullWithFeedback"
 import { PrescriptionRequest } from "../model/PrescriptionRequest"
+import { PrescriptionsRequest } from "../model/PrescriptionsRequest"
 import { PutVisionResult } from "../model/PutVisionResult"
 import { RecipeKmehrmessageType } from "../model/RecipeKmehrmessageType"
 import { UpdateFeedbackFlagResult } from "../model/UpdateFeedbackFlagResult"
@@ -147,6 +148,59 @@ export class fhcRecipeApi {
       (headers = headers.concat(new XHR.Header("X-FHC-packageVersion", xFHCPackageVersion)))
     return XHR.sendCommand("POST", _url, headers, _body, this.fetchImpl)
       .then(doc => new Prescription(doc.body as JSON))
+      .catch(err => this.handleError(err))
+  }
+
+  /**
+   *
+   * @summary createPrescriptions
+   * @param body prescription
+   * @param xFHCKeystoreId X-FHC-keystoreId
+   * @param xFHCTokenId X-FHC-tokenId
+   * @param xFHCPassPhrase X-FHC-passPhrase
+   * @param hcpQuality hcpQuality
+   * @param hcpNihii hcpNihii
+   * @param hcpSsin hcpSsin
+   * @param hcpName hcpName
+   * @param xFHCVendorName X-FHC-vendorName
+   * @param xFHCPackageVersion X-FHC-packageVersion
+   */
+  createPrescriptionsUsingPOST(
+    xFHCKeystoreId: string,
+    xFHCTokenId: string,
+    xFHCPassPhrase: string,
+    hcpQuality: string,
+    hcpNihii: string,
+    hcpSsin?: string,
+    hcpName?: string,
+    xFHCVendorName?: string,
+    xFHCPackageVersion?: string,
+    body?: PrescriptionsRequest
+  ): Promise<Array<Prescription>> {
+    let _body = null
+    _body = body
+
+    const _url =
+      this.host +
+      `/recipe/batch` +
+      "?ts=" +
+      new Date().getTime() +
+      (hcpQuality ? "&hcpQuality=" + encodeURIComponent(String(hcpQuality)) : "") +
+      (hcpNihii ? "&hcpNihii=" + encodeURIComponent(String(hcpNihii)) : "") +
+      (hcpSsin ? "&hcpSsin=" + encodeURIComponent(String(hcpSsin)) : "") +
+      (hcpName ? "&hcpName=" + encodeURIComponent(String(hcpName)) : "")
+    let headers = this.headers
+    headers = headers
+      .filter(h => h.header !== "Content-Type")
+      .concat(new XHR.Header("Content-Type", "application/json"))
+    xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
+    xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
+    xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
+    xFHCVendorName && (headers = headers.concat(new XHR.Header("X-FHC-vendorName", xFHCVendorName)))
+    xFHCPackageVersion &&
+      (headers = headers.concat(new XHR.Header("X-FHC-packageVersion", xFHCPackageVersion)))
+    return XHR.sendCommand("POST", _url, headers, _body, this.fetchImpl)
+      .then(doc => (doc.body as Array<JSON>).map(it => new Prescription(it)))
       .catch(err => this.handleError(err))
   }
 

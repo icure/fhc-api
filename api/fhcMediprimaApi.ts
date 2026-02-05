@@ -53,6 +53,8 @@ export class fhcMediprimaApi {
    * @param traineeSupervisorNihii traineeSupervisorNihii
    * @param traineeSupervisorFirstName traineeSupervisorFirstName
    * @param traineeSupervisorLastName traineeSupervisorLastName
+   * @param guardPostNihii guardPostNihii
+   * @param guardPostSsin guardPostSsin
    */
   consultMediprimaTarificationUsingPOST(
     patientSsin: string,
@@ -68,6 +70,8 @@ export class fhcMediprimaApi {
     traineeSupervisorNihii?: string,
     traineeSupervisorFirstName?: string,
     traineeSupervisorLastName?: string,
+    guardPostNihii?: string,
+    guardPostSsin?: string,
     body?: Array<string>
   ): Promise<TarificationMediprimaConsultationResult> {
     let _body = null
@@ -94,7 +98,9 @@ export class fhcMediprimaApi {
         : "") +
       (traineeSupervisorLastName
         ? "&traineeSupervisorLastName=" + encodeURIComponent(String(traineeSupervisorLastName))
-        : "")
+        : "") +
+      (guardPostNihii ? "&guardPostNihii=" + encodeURIComponent(String(guardPostNihii)) : "") +
+      (guardPostSsin ? "&guardPostSsin=" + encodeURIComponent(String(guardPostSsin)) : "")
     let headers = this.headers
     headers = headers
       .filter(h => h.header !== "Content-Type")
