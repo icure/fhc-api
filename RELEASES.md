@@ -280,3 +280,9 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.25 | target: 4839f5252bc86f6193d2473389bb10a4b25a9f9d | prerelease: false -->
 
 Maintenance release (version bump only).
+
+## [MISSING] 0.6.26 (2026-07-09)
+
+<!-- tag: 0.6.26 | target: f390bfabb270e3fd923826b6cfbba27b97fe6dde | prerelease: false -->
+
+- Include latest fhc changes and bump icc-api version
