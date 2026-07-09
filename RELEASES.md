@@ -281,7 +281,7 @@ Maintenance release (version bump only).
 
 Maintenance release (version bump only).
 
-## [MISSING] 0.6.26 (2026-07-09)
+## 0.6.26 (2026-07-09)
 
 <!-- tag: 0.6.26 | target: f390bfabb270e3fd923826b6cfbba27b97fe6dde | prerelease: false -->
 
