@@ -21,5 +21,7 @@ export class EIDItem {
   readDate?: number
   readHour?: number
   readType?: string
-  readvalue?: string
+  readValue?: string
+  vignetteReason?: number
+  manualEntryReason?: number
 }

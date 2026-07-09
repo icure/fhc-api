@@ -30,4 +30,5 @@ export class EAgreementBatchResponse {
   myCarenetErrors?: Array<MycarenetError>
   responseId?: string
   status?: MdaStatus
+  value?: string
 }

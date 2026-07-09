@@ -372,7 +372,7 @@ function toInvoiceItem(
       readType: "1",
       readDate: invoiceItem.dateCode,
       readHour: invoicingCode.eidReadingHour,
-      readvalue: invoicingCode.eidReadingValue
+      readValue: invoicingCode.eidReadingValue
     })
   }
   invoiceItem.gnotionNihii = invoice.gnotionNihii
