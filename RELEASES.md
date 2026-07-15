@@ -286,3 +286,9 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.26 | target: f390bfabb270e3fd923826b6cfbba27b97fe6dde | prerelease: false -->
 
 - Include latest fhc changes and bump icc-api version
+
+## [MISSING] 0.6.27 (2026-07-15)
+
+<!-- tag: 0.6.27 | target: f0edbe68d797f8630f6eb508b5988290414d4a41 | prerelease: false -->
+
+- Support @icure/api 8.10.x: widened the peerDependencies range to >=8.4.8 <8.11.0
