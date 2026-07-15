@@ -287,7 +287,7 @@ Maintenance release (version bump only).
 
 - Include latest fhc changes and bump icc-api version
 
-## [MISSING] 0.6.27 (2026-07-15)
+## 0.6.27 (2026-07-15)
 
 <!-- tag: 0.6.27 | target: f0edbe68d797f8630f6eb508b5988290414d4a41 | prerelease: false -->
 
