@@ -2,3 +2,4 @@
 dist/
 .idea/
 .yarn/
+.DS_Store
