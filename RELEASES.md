@@ -292,3 +292,10 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.27 | target: f0edbe68d797f8630f6eb508b5988290414d4a41 | prerelease: false -->
 
 - Support @icure/api 8.10.x: widened the peerDependencies range to >=8.4.8 <8.11.0
+
+## [MISSING] 0.6.28 (2026-08-28)
+
+<!-- tag: 0.6.28 | target: 4fdec4aa3465c670a6fcda16140d4189c92d3dd5 | prerelease: false -->
+
+- Support @icure/api 8.11.x-8.13.x: widened the peerDependencies range to >=8.4.8 <8.14.0
+- Fix test compilation: remove broken typeRoots pointing outside the repo
