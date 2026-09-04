@@ -11,18 +11,23 @@ Publishes a new version to NPM and GitHub in one pass: preflight checks, version
 
 **Remote name:** this repo's remote is `github`, not `origin` — use `github` in every fetch/push.
 
-**Interactive prompts:** commits, tags and pushes are SSH-signed through the Secretive agent, which may refuse to sign from a non-interactive shell (`agent refused operation` / `Permission denied (publickey)`). If that happens, don't retry blindly: ask the user to run the exact same command with the `!` prefix so they can approve Secretive's prompt. Remote-only operations (deleting a tag/release) can alternatively go through `gh api`, which uses an HTTPS token and needs no SSH.
+**Interactive prompts:** commits, tags and pushes are SSH-signed through the Secretive agent, which may refuse to sign from a non-interactive shell (`agent refused operation` / `Permission denied (publickey)`). If that happens, don't retry blindly: ask the user to run the exact same command with the `!` prefix so they can approve Secretive's prompt. One exception: a refusal can be transient (`error: unable to sign the tag`, moments after commits signed fine) — retry the exact command once, and only escalate if it fails again. Remote-only operations (deleting a tag/release) can alternatively go through `gh api`, which uses an HTTPS token and needs no SSH.
 
 ## 1. Preflight — everything pushed on release/v5
 
 ```bash
-git fetch github
-git status --porcelain            # must be empty
-git branch --show-current         # must be release/v5
+git fetch github                       # MUST succeed — see below
+git status --porcelain                 # must be empty
+git branch --show-current              # must be release/v5
 git rev-parse HEAD github/release/v5   # must be identical
+gh api repos/icure/fhc-api/branches/release/v5 --jq '.commit.sha'   # must equal HEAD
 ```
 
 Any mismatch → stop and tell the user what differs (uncommitted files, unpushed commits, wrong branch).
+
+**A failed `git fetch` is a hard stop, never a warning to step over.** `github/release/v5` is a _local_ ref: when the fetch fails (Secretive refusing SSH, no network), `git rev-parse` compares HEAD against a stale ref and reports _identical_ — a false green that hides every commit and release made since the last successful fetch. Releasing from that state means re-using a version that is already published and immutable on NPM, from a tree missing other people's work. Ask the user to run `! git fetch github`, then start preflight over.
+
+The `gh api` line is an independent cross-check: it reads the real branch head over HTTPS, needs no SSH, and catches a stale ref even when the fetch looked fine. Where it disagrees with the local ref, trust `gh api`.
 
 ## 2. NPM authentication
 
@@ -92,10 +97,10 @@ The pre-commit prettier hook may insert a blank line between the entry header an
 
 ## 7. Tag and push
 
-Tags use the plain version, no `v` prefix, on the bump commit:
+Tags use the plain version, no `v` prefix, on the bump commit. `tag.gpgSign` is enabled in this repo, so tags are annotated and need a message — a bare `git tag <VERSION>` fails with "no tag message?":
 
 ```bash
-git tag <VERSION> $BUMP_SHA
+git tag -m <VERSION> <VERSION> $BUMP_SHA
 git push github release/v5 <VERSION>
 ```
 
@@ -107,7 +112,13 @@ yarn run publish
 
 This builds (`prepare`) and runs `npm publish` from `dist/`. NPM requires a fresh one-time password at publish time, even right after a successful `npm login` — expect an `EOTP` error or a masked browser-auth URL. When that happens the build is already done: ask the user to run `! cd dist && npm publish` themselves (or `! cd dist && npm publish --otp=<code>`) and complete the OTP flow.
 
-Always verify before continuing: `npm view @icure/be-fhc-api@<VERSION> version` must return the version — a 404 means the publish did NOT complete (e.g. the OTP prompt was abandoned), regardless of how much tarball output was printed.
+Always verify before continuing: `npm view @icure/be-fhc-api@<VERSION> version --prefer-online` must return the version — a 404 means the publish did NOT complete (e.g. the OTP prompt was abandoned), regardless of how much tarball output was printed.
+
+`--prefer-online` is not optional: a plain `npm view` serves a cached 404 for some minutes after a _successful_ publish, so without it you will report a working release as failed and risk a pointless re-publish. When the answer still looks wrong, query the registry directly, which bypasses NPM's cache entirely — and since this release usually exists to widen the `@icure/api` range, check the published range came through too:
+
+```bash
+curl -s https://registry.npmjs.org/@icure/be-fhc-api | python3 -c "import json,sys; d=json.load(sys.stdin); v=d['versions'].get('<VERSION>'); print(d['dist-tags'], v and v.get('peerDependencies'))"
+```
 
 ## 9. Create the GitHub release
 
