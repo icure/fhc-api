@@ -18,6 +18,7 @@ export class InvoiceItem {
     Object.assign(this as InvoiceItem, json)
   }
 
+  agreementNumber?: string
   anatomy?: string
   codeNomenclature?: number
   dateCode?: number
@@ -82,7 +83,7 @@ export namespace InvoiceItem {
     InvoiceException: "InvoiceException" as PercentNormEnum,
     ForInformation: "ForInformation" as PercentNormEnum,
     PseudoCodeProthesis: "PseudoCodeProthesis" as PercentNormEnum,
-    SurgicalSameField: "SurgicalSameField" as PercentNormEnum,
+    SurgicalSameField: "SurgicalSameField" as PercentNormEnum
   }
   export type PrescriberNormEnum =
     | "None"

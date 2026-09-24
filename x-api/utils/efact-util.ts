@@ -378,6 +378,7 @@ function toInvoiceItem(
   invoiceItem.gnotionNihii = invoice.gnotionNihii
   invoiceItem.insuranceRef = invoicingCode.contract || undefined // Must be != ""
   invoiceItem.insuranceRefDate = invoicingCode.contractDate || invoiceItem.dateCode
+  invoiceItem.agreementNumber = invoicingCode.agreementNumber || undefined // Must be != ""
   invoiceItem.invoiceRef = uuidBase36(invoicingCode.id!!)
   invoiceItem.productLabel = invoicingCode.productLabel
   invoiceItem.override3rdPayerCode = invoicingCode.override3rdPayerCode?.toString()
