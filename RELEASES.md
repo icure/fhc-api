@@ -305,3 +305,10 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.29 | target: 86adadff53f6481543de0123eb496840d9bca888 | prerelease: false -->
 
 - Support @icure/api 8.14.0: widened the peerDependencies range to >=8.4.8 <8.15.0
+
+## [MISSING] 0.6.31 (2026-09-24)
+
+<!-- tag: 0.6.31 | target: 691fe55a8ae9f6cadf34c4565e7a8b31906e5f18 | prerelease: false -->
+
+- Added `agreementNumber` to `InvoiceItem` and mapped it from `InvoicingCode.agreementNumber` when building efact invoices (written by FHC to ET52 zone 19)
+- Support @icure/api 8.16.x: widened the peerDependencies range to >=8.4.8 <8.17.0. `InvoicingCode.agreementNumber` requires iCure backend 26.10 or later
