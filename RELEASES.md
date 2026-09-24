@@ -306,7 +306,7 @@ Maintenance release (version bump only).
 
 - Support @icure/api 8.14.0: widened the peerDependencies range to >=8.4.8 <8.15.0
 
-## [MISSING] 0.6.31 (2026-09-24)
+## 0.6.31 (2026-09-24)
 
 <!-- tag: 0.6.31 | target: 691fe55a8ae9f6cadf34c4565e7a8b31906e5f18 | prerelease: false -->
 
