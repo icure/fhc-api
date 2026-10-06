@@ -23,13 +23,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@icure/api@npm:~8.16.0":
-  version: 8.16.0
-  resolution: "@icure/api@npm:8.16.0"
+"@icure/api@npm:~8.17.0":
+  version: 8.17.0
+  resolution: "@icure/api@npm:8.17.0"
   dependencies:
     date-fns: "npm:^2.23.0"
     libphonenumber-js: "npm:^1.7.18"
-  checksum: 10c0/cccfd51a9f9a1b5b35b27d10354b2be0c6237a919f71f148b854f882f6b94806be8f5485b67f3e387b1d2818d7c231c40d5fc4c691ff1bad3a632d9e5f17f55c
+  checksum: 10c0/f8b0851e80803e1cf1e6da44e1a62f33c851efb0afc03996a38671bf93991e7960d854a033c5accde1197e3c76e2bb460ae67c5182f8fe1aeed74d68b7ffd2b9
   languageName: node
   linkType: hard
 
@@ -37,7 +37,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@icure/be-fhc-api@workspace:."
   dependencies:
-    "@icure/api": "npm:~8.16.0"
+    "@icure/api": "npm:~8.17.0"
     "@types/chai": "npm:^4.1.4"
     "@types/form-data": "npm:^2.2.1"
     "@types/lodash": "npm:^4.14.182"
@@ -58,7 +58,7 @@ __metadata:
     ts-node: "npm:^10.7.0"
     typescript: "npm:^5.8.3"
   peerDependencies:
-    "@icure/api": ">=8.4.8 <8.17.0"
+    "@icure/api": ">=8.4.8 <8.18.0"
   languageName: unknown
   linkType: soft
 
