@@ -132,6 +132,10 @@ export interface ET52Data extends ETData {
   eidReadingType: string
   eidReadingHour: string
   nihii: string
+  serialNumber: string
+  justificativeDocumentNumber: string
+  uniqueMedicalImagingDeviceNumber: string
+  accordNumber : string
 }
 
 export interface ET80Data extends ETData {
@@ -919,7 +923,7 @@ export abstract class EfactMessageReader {
       et52.zones!![i++].value
     )
 
-    this.log("reserve", et52.zones!![i++].value)
+    const manualEntryReason = this.log("Raison de la saisie manuelle", et52.zones!![i++].value)
     const nomenCode = this.log("Code nomenclature", et52.zones!![i++].value)
 
     const prestationDate = this.log("Date de prestation", et52.zones!![i++].value)
@@ -951,10 +955,18 @@ export abstract class EfactMessageReader {
       "Heure de lecture document identite electronique (1 et 2)",
       et52.zones!![i++].value
     )
-
     this.log("reserve", et52.zones!![i++].value)
     const nihii = this.log("Numero INAMI", et52.zones!![i++].value)
-
+    const serialNumber = this.log("Numero de serie du support", et52.zones!![i++].value)
+    const justificativeDocumentNumber = this.log(
+      "Numéro de document justificatif",
+      et52.zones!![i++].value
+    )
+    const uniqueMedicalImagingDeviceNumber = this.log(
+      "Numéro unique appareil imagerie médicale",
+      et52.zones!![i++].value
+    )
+    const accordNumber = this.log("Numéro d'accord", et52.zones!![i++].value)
     this.log("reserve", et52.zones!![i++].value)
     this.log("Chiffres de controle de l'enregistrement", et52.zones!![i++].value)
     if (i !== et52.zones!!.length) {
@@ -970,7 +982,11 @@ export abstract class EfactMessageReader {
       eidSupportType,
       eidReadingType,
       eidReadingHour,
-      nihii
+      nihii,
+      serialNumber,
+      justificativeDocumentNumber,
+      uniqueMedicalImagingDeviceNumber,
+      accordNumber
     }
   }
 
