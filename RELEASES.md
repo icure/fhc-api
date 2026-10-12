@@ -318,3 +318,9 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.32 | target: 0500915ec0940e2b4ea3560e60fe40f5f6344587 | prerelease: false -->
 
 - Support @icure/api 8.17.x: widened the peerDependencies range to >=8.4.8 <8.18.0
+
+## [MISSING] 0.6.33 (2026-10-12)
+
+<!-- tag: 0.6.33 | target: 8d32791260b51773bf0c993d60580e1dc40d20a1 | prerelease: false -->
+
+- efact parser: `ET52Data` now exposes `serialNumber`, `justificativeDocumentNumber`, `uniqueMedicalImagingDeviceNumber` and `accordNumber`, parsed from the ET52 record zones that were previously skipped as reserved
