@@ -60,6 +60,10 @@ export class fhcEattestV3Api {
    * @param traineeSupervisorNihii traineeSupervisorNihii
    * @param traineeSupervisorFirstName traineeSupervisorFirstName
    * @param traineeSupervisorLastName traineeSupervisorLastName
+   * @param hcpQuality hcpQuality
+   * @param guardPostNihii guardPostNihii
+   * @param guardPostSsin guardPostSsin
+   * @param guardPostName guardPostName
    */
   cancelAttestUsingDELETE1(
     patientSsin: string,
@@ -81,7 +85,11 @@ export class fhcEattestV3Api {
     traineeSupervisorSsin?: string,
     traineeSupervisorNihii?: string,
     traineeSupervisorFirstName?: string,
-    traineeSupervisorLastName?: string
+    traineeSupervisorLastName?: string,
+    hcpQuality?: string,
+    guardPostNihii?: string,
+    guardPostSsin?: string,
+    guardPostName?: string
   ): Promise<SendAttestResult> {
     let _body = null
 
@@ -115,7 +123,11 @@ export class fhcEattestV3Api {
         : "") +
       (traineeSupervisorLastName
         ? "&traineeSupervisorLastName=" + encodeURIComponent(String(traineeSupervisorLastName))
-        : "")
+        : "") +
+      (hcpQuality ? "&hcpQuality=" + encodeURIComponent(String(hcpQuality)) : "") +
+      (guardPostNihii ? "&guardPostNihii=" + encodeURIComponent(String(guardPostNihii)) : "") +
+      (guardPostSsin ? "&guardPostSsin=" + encodeURIComponent(String(guardPostSsin)) : "") +
+      (guardPostName ? "&guardPostName=" + encodeURIComponent(String(guardPostName)) : "")
     let headers = this.headers
     xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
     xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
@@ -148,6 +160,10 @@ export class fhcEattestV3Api {
    * @param traineeSupervisorNihii traineeSupervisorNihii
    * @param traineeSupervisorFirstName traineeSupervisorFirstName
    * @param traineeSupervisorLastName traineeSupervisorLastName
+   * @param hcpQuality hcpQuality
+   * @param guardPostNihii guardPostNihii
+   * @param guardPostSsin guardPostSsin
+   * @param guardPostName guardPostName
    */
   cancelAttestWithResponseUsingDELETE1(
     patientSsin: string,
@@ -169,7 +185,11 @@ export class fhcEattestV3Api {
     traineeSupervisorSsin?: string,
     traineeSupervisorNihii?: string,
     traineeSupervisorFirstName?: string,
-    traineeSupervisorLastName?: string
+    traineeSupervisorLastName?: string,
+    hcpQuality?: string,
+    guardPostNihii?: string,
+    guardPostSsin?: string,
+    guardPostName?: string
   ): Promise<SendAttestResultWithResponse> {
     let _body = null
 
@@ -203,7 +223,11 @@ export class fhcEattestV3Api {
         : "") +
       (traineeSupervisorLastName
         ? "&traineeSupervisorLastName=" + encodeURIComponent(String(traineeSupervisorLastName))
-        : "")
+        : "") +
+      (hcpQuality ? "&hcpQuality=" + encodeURIComponent(String(hcpQuality)) : "") +
+      (guardPostNihii ? "&guardPostNihii=" + encodeURIComponent(String(guardPostNihii)) : "") +
+      (guardPostSsin ? "&guardPostSsin=" + encodeURIComponent(String(guardPostSsin)) : "") +
+      (guardPostName ? "&guardPostName=" + encodeURIComponent(String(guardPostName)) : "")
     let headers = this.headers
     xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
     xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
