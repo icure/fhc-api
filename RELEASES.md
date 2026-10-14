@@ -324,3 +324,9 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.33 | target: 8d32791260b51773bf0c993d60580e1dc40d20a1 | prerelease: false -->
 
 - efact parser: `ET52Data` now exposes `serialNumber`, `justificativeDocumentNumber`, `uniqueMedicalImagingDeviceNumber` and `accordNumber`, parsed from the ET52 record zones that were previously skipped as reserved
+
+## [MISSING] 0.6.34 (2026-10-14)
+
+<!-- tag: 0.6.34 | target: 7900d66a6ff1c5499dd3e20fa35430a431816e29 | prerelease: false -->
+
+- eAttest v3 `cancelAttest` / `cancelAttestWithResponse`: added optional `hcpQuality`, `guardPostNihii`, `guardPostSsin` and `guardPostName` parameters (requires freehealth-connector with MS-8859)
