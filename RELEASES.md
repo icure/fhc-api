@@ -330,3 +330,9 @@ Maintenance release (version bump only).
 <!-- tag: 0.6.34 | target: 7900d66a6ff1c5499dd3e20fa35430a431816e29 | prerelease: false -->
 
 - eAttest v3 `cancelAttest` / `cancelAttestWithResponse`: added optional `hcpQuality`, `guardPostNihii`, `guardPostSsin` and `guardPostName` parameters (requires freehealth-connector with MS-8859)
+
+## [MISSING] 0.6.35 (2026-10-23)
+
+<!-- tag: 0.6.35 | target: cba26a8fb0d474ad1a6998208cf71bc7b0d9abc1 | prerelease: false -->
+
+- STS: added `exchangeTokenForIamUsingPOST` (`POST /sts/token/exchange/iam`), which exchanges a cached SAML HOK token for an I.AM Connect healthcare-realm JWT, with an optional refresh token, returned as the new `IamTokenResult` model (requires freehealth-connector with CSM-847)
