@@ -12,6 +12,7 @@
 import { XHR } from "./XHR"
 import { BearerToken } from "../model/BearerToken"
 import { CertificateInfo } from "../model/CertificateInfo"
+import { IamTokenResult } from "../model/IamTokenResult"
 import { SamlTokenResult } from "../model/SamlTokenResult"
 import { TokenResponse } from "../model/TokenResponse"
 import { UUIDType } from "../model/UUIDType"
@@ -68,6 +69,43 @@ export class fhcStsApi {
     xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
     return XHR.sendCommand("GET", _url, headers, _body, this.fetchImpl)
       .then(doc => JSON.parse(JSON.stringify(doc.body)))
+      .catch(err => this.handleError(err))
+  }
+
+  /**
+   * Exchanges a previously obtained SAML holder-of-key token for a JWT issued by the IAM Connect healthcare realm. The actor token required by the exchange is generated and signed with the holder-of-key private key of the keystore (RSA or EC). The clientId is the IAM Connect client id of the calling application. The ssin defaults to the certificate holder SSIN found in the SAML token. If refreshable is true, a refresh token is returned along with the access token.
+   * @summary Exchange a SAML HOK token for an IAM Connect JWT
+   * @param xFHCKeystoreId X-FHC-keystoreId
+   * @param xFHCPassPhrase X-FHC-passPhrase
+   * @param xFHCTokenId X-FHC-tokenId
+   * @param clientId clientId
+   * @param ssin ssin
+   * @param refreshable refreshable
+   */
+  exchangeTokenForIamUsingPOST(
+    xFHCKeystoreId: string,
+    xFHCPassPhrase: string,
+    xFHCTokenId: string,
+    clientId: string,
+    ssin?: string,
+    refreshable?: boolean
+  ): Promise<IamTokenResult> {
+    let _body = null
+
+    const _url =
+      this.host +
+      `/sts/token/exchange/iam` +
+      "?ts=" +
+      new Date().getTime() +
+      (clientId ? "&clientId=" + encodeURIComponent(String(clientId)) : "") +
+      (ssin ? "&ssin=" + encodeURIComponent(String(ssin)) : "") +
+      (refreshable ? "&refreshable=" + encodeURIComponent(String(refreshable)) : "")
+    let headers = this.headers
+    xFHCKeystoreId && (headers = headers.concat(new XHR.Header("X-FHC-keystoreId", xFHCKeystoreId)))
+    xFHCPassPhrase && (headers = headers.concat(new XHR.Header("X-FHC-passPhrase", xFHCPassPhrase)))
+    xFHCTokenId && (headers = headers.concat(new XHR.Header("X-FHC-tokenId", xFHCTokenId)))
+    return XHR.sendCommand("POST", _url, headers, _body, this.fetchImpl)
+      .then(doc => new IamTokenResult(doc.body as JSON))
       .catch(err => this.handleError(err))
   }
 
