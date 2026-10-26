@@ -319,19 +319,19 @@ Maintenance release (version bump only).
 
 - Support @icure/api 8.17.x: widened the peerDependencies range to >=8.4.8 <8.18.0
 
-## [MISSING] 0.6.33 (2026-10-12)
+## 0.6.33 (2026-10-12)
 
 <!-- tag: 0.6.33 | target: 8d32791260b51773bf0c993d60580e1dc40d20a1 | prerelease: false -->
 
 - efact parser: `ET52Data` now exposes `serialNumber`, `justificativeDocumentNumber`, `uniqueMedicalImagingDeviceNumber` and `accordNumber`, parsed from the ET52 record zones that were previously skipped as reserved
 
-## [MISSING] 0.6.34 (2026-10-14)
+## 0.6.34 (2026-10-14)
 
 <!-- tag: 0.6.34 | target: 7900d66a6ff1c5499dd3e20fa35430a431816e29 | prerelease: false -->
 
 - eAttest v3 `cancelAttest` / `cancelAttestWithResponse`: added optional `hcpQuality`, `guardPostNihii`, `guardPostSsin` and `guardPostName` parameters (requires freehealth-connector with MS-8859)
 
-## [MISSING] 0.6.35 (2026-10-23)
+## 0.6.35 (2026-10-23)
 
 <!-- tag: 0.6.35 | target: cba26a8fb0d474ad1a6998208cf71bc7b0d9abc1 | prerelease: false -->
 
