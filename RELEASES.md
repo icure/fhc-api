@@ -337,7 +337,7 @@ Maintenance release (version bump only).
 
 - STS: added `exchangeTokenForIamUsingPOST` (`POST /sts/token/exchange/iam`), which exchanges a cached SAML HOK token for an I.AM Connect healthcare-realm JWT, with an optional refresh token, returned as the new `IamTokenResult` model (requires freehealth-connector with CSM-847)
 
-## [MISSING] 0.6.36 (2026-10-26)
+## 0.6.36 (2026-10-26)
 
 <!-- tag: 0.6.36 | target: 11d13563f0118407623d8d3212c215b134c6e45f | prerelease: false -->
 
