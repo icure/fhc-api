@@ -317,6 +317,7 @@ export class fhcEagreementApi {
    * @param patientIoMembership patientIoMembership
    * @param orgNihii orgNihii
    * @param organizationType organizationType
+   * @param agreementStartDate agreementStartDate
    * @param agreementType agreementType
    */
   cancelAgreementUsingPOST(
@@ -339,6 +340,7 @@ export class fhcEagreementApi {
     patientIoMembership?: string,
     orgNihii?: string,
     organizationType?: string,
+    agreementStartDate?: number,
     agreementType?: string
   ): Promise<EAgreementResponse> {
     let _body = null
@@ -371,6 +373,9 @@ export class fhcEagreementApi {
       (orgNihii ? "&orgNihii=" + encodeURIComponent(String(orgNihii)) : "") +
       (organizationType
         ? "&organizationType=" + encodeURIComponent(String(organizationType))
+        : "") +
+      (agreementStartDate
+        ? "&agreementStartDate=" + encodeURIComponent(String(agreementStartDate))
         : "") +
       (agreementType ? "&agreementType=" + encodeURIComponent(String(agreementType)) : "")
     let headers = this.headers
