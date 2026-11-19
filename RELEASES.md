@@ -343,7 +343,7 @@ Maintenance release (version bump only).
 
 - eFact: insurer code 691 (Mutuality for Fedasil) is no longer rejected as a federation by `ensureNoFederation`
 
-## [MISSING] 0.6.37 (2026-11-18)
+## 0.6.37 (2026-11-18)
 
 <!-- tag: 0.6.37 | target: 3104373c6ec92acc5fd4bc5220647057068a4545 | prerelease: false -->
 
